@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import rcParams
+import os
 
 # 配置中文字体
 rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
@@ -147,9 +148,14 @@ ax.text(0.78, 0.02, '★ 绿框标注为存量策略',
 # 调整布局
 plt.tight_layout()
 
+# 确保 output 文件夹存在
+output_dir = 'output'
+os.makedirs(output_dir, exist_ok=True)
+
 # 保存图表
-plt.savefig('strategy_allocation_v2.png', dpi=300, bbox_inches='tight')
-print("图表已保存为 'strategy_allocation_v2.png'")
+output_path = os.path.join(output_dir, 'strategy_allocation_v2.png')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+print(f"图表已保存为 '{output_path}'")
 
 # 显示图表
 plt.show()

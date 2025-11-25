@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import rcParams
 import matplotlib.patches as mpatches
+import os
 
 # 配置中文字体
 rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
@@ -174,9 +175,14 @@ ax3.text(0.1, 0.95, example_text, transform=ax3.transAxes,
 
 plt.tight_layout()
 
+# 确保 output 文件夹存在
+output_dir = 'output'
+os.makedirs(output_dir, exist_ok=True)
+
 # 保存图表
-plt.savefig('portfolio_theory.png', dpi=300, bbox_inches='tight')
-print("投资组合理论可视化已保存为 'portfolio_theory.png'")
+output_path = os.path.join(output_dir, 'portfolio_theory.png')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+print(f"投资组合理论可视化已保存为 '{output_path}'")
 
 # 显示图表
 plt.show()

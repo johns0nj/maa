@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import rcParams
+import os
 
 # 配置中文字体
 rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
@@ -128,9 +129,14 @@ best_sharpe_idx = np.argmax(sharpe_ratios)
 # 调整布局
 plt.tight_layout()
 
+# 确保 output 文件夹存在
+output_dir = 'output'
+os.makedirs(output_dir, exist_ok=True)
+
 # 保存图表
-plt.savefig('efficient_frontier.png', dpi=300, bbox_inches='tight')
-print("有效前沿图表已保存为 'efficient_frontier.png'")
+output_path = os.path.join(output_dir, 'efficient_frontier.png')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+print(f"有效前沿图表已保存为 '{output_path}'")
 
 # 显示图表
 plt.show()
