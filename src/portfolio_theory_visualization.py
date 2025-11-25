@@ -67,29 +67,29 @@ for w_s, w_b in zip(weights_stock, weights_bond):
     portfolio_volatilities.append(vol)
 
 # ==================== 创建可视化 ====================
-fig, ax1 = plt.subplots(figsize=(16, 10))
+fig, ax1 = plt.subplots(figsize=(20, 14))
 
 # 绘制有效前沿曲线
-ax1.plot(portfolio_volatilities, portfolio_returns, 'b-', linewidth=3, label='有效前沿')
+ax1.plot(portfolio_volatilities, portfolio_returns, 'b-', linewidth=5, label='有效前沿')
 
 # 标注纯权益和纯固收点
-ax1.scatter([bond_volatility], [bond_return], s=400, c='blue', 
-           marker='s', edgecolors='black', linewidths=2, zorder=5, label='纯固收')
+ax1.scatter([bond_volatility], [bond_return], s=600, c='blue', 
+           marker='s', edgecolors='black', linewidths=3, zorder=5, label='纯固收')
 ax1.annotate(f'纯固收\n收益率: {bond_return}%\n波动率: {bond_volatility}%', 
             xy=(bond_volatility, bond_return), 
             xytext=(15, 15), textcoords='offset points',
-            fontsize=14, fontweight='bold',
-            bbox=dict(boxstyle='round,pad=0.5', facecolor='lightblue', 
-                     alpha=0.8, edgecolor='black', linewidth=2))
+            fontsize=28, fontweight='bold',
+            bbox=dict(boxstyle='round,pad=0.8', facecolor='lightblue', 
+                     alpha=0.8, edgecolor='black', linewidth=3))
 
-ax1.scatter([stock_volatility], [stock_return], s=400, c='red', 
-           marker='s', edgecolors='black', linewidths=2, zorder=5, label='纯权益')
+ax1.scatter([stock_volatility], [stock_return], s=600, c='red', 
+           marker='s', edgecolors='black', linewidths=3, zorder=5, label='纯权益')
 ax1.annotate(f'纯权益\n收益率: {stock_return}%\n波动率: {stock_volatility}%', 
             xy=(stock_volatility, stock_return), 
             xytext=(15, -25), textcoords='offset points',
-            fontsize=14, fontweight='bold',
-            bbox=dict(boxstyle='round,pad=0.5', facecolor='lightcoral', 
-                     alpha=0.8, edgecolor='black', linewidth=2))
+            fontsize=28, fontweight='bold',
+            bbox=dict(boxstyle='round,pad=0.8', facecolor='lightcoral', 
+                     alpha=0.8, edgecolor='black', linewidth=3))
 
 # 标注几个典型组合：60%权益40%固收，和20%权益80%固收
 typical_weights = [0.6, 0.2]
@@ -99,24 +99,24 @@ for i, w_s in enumerate(typical_weights):
     w_b = 1 - w_s
     ret, vol = calculate_portfolio(w_s, w_b, stock_return, bond_return, 
                                    stock_volatility, bond_volatility, correlation)
-    ax1.scatter([vol], [ret], s=300, c=typical_colors[i], 
-               marker='o', edgecolors='black', linewidths=2, zorder=5)
+    ax1.scatter([vol], [ret], s=500, c=typical_colors[i], 
+               marker='o', edgecolors='black', linewidths=3, zorder=5)
     # 标注组合配置、预期收益率和波动率
     annotation_text = f'{typical_labels[i]}\n收益率: {ret:.2f}%\n波动率: {vol:.2f}%'
     ax1.annotate(annotation_text, 
                 xy=(vol, ret), 
                 xytext=(15, 15) if i == 0 else (15, -25), 
                 textcoords='offset points',
-                fontsize=14, fontweight='bold',
-                bbox=dict(boxstyle='round,pad=0.5', facecolor=typical_colors[i], 
-                         alpha=0.8, edgecolor='black', linewidth=2))
+                fontsize=28, fontweight='bold',
+                bbox=dict(boxstyle='round,pad=0.8', facecolor=typical_colors[i], 
+                         alpha=0.8, edgecolor='black', linewidth=3))
 
-ax1.set_xlabel('组合波动率 (%)', fontsize=18, fontweight='bold')
-ax1.set_ylabel('组合预期收益率 (%)', fontsize=18, fontweight='bold')
-ax1.set_title('固收-权益组合的有效前沿', fontsize=22, fontweight='bold', pad=20)
+ax1.set_xlabel('组合波动率 (%)', fontsize=36, fontweight='bold')
+ax1.set_ylabel('组合预期收益率 (%)', fontsize=36, fontweight='bold')
+ax1.set_title('固收-权益组合的有效前沿', fontsize=44, fontweight='bold', pad=20)
 ax1.grid(True, linestyle='--', alpha=0.3)
-ax1.legend(fontsize=16, loc='lower right')
-ax1.tick_params(axis='both', which='major', labelsize=16)
+ax1.legend(fontsize=32, loc='lower right')
+ax1.tick_params(axis='both', which='major', labelsize=32)
 
 plt.tight_layout()
 
