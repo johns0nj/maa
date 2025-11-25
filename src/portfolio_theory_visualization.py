@@ -9,16 +9,16 @@ rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
 rcParams['axes.unicode_minus'] = False
 
 # ==================== 基础参数设置 ====================
-# 股票参数
-stock_return = 7.0  # 预期收益率 (%)
-stock_volatility = 16.0  # 波动率 (%)
+# 权益参数
+stock_return = 7.5  # 预期收益率 (%)
+stock_volatility = 18.0  # 波动率 (%)
 
-# 债券参数
-bond_return = 4.0  # 预期收益率 (%)
-bond_volatility = 3.0  # 波动率 (%)
+# 固收参数
+bond_return = 4.5  # 预期收益率 (%)
+bond_volatility = 7.0  # 波动率 (%)
 
 # 相关系数
-correlation = 0.2  # 股票和债券的相关系数
+correlation = 0.2  # 权益和固收的相关系数
 
 # ==================== 组合计算函数 ====================
 def calculate_portfolio(w_stock, w_bond, r_stock, r_bond, vol_stock, vol_bond, corr):
