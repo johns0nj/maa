@@ -8,7 +8,7 @@ rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
 rcParams['axes.unicode_minus'] = False
 
 # 定义策略数据
-strategies = ['固收', '固收+', 'SAA', 'TAA多资产', '权益-', '权益', '权益+']
+strategies = ['固收配置策略', '固收+', 'SAA策略', '外委多资产策略', '权益-', '权益策略', '权益+']
 
 # 三类资产占比
 fixed_income_ratio = [100, 95, 92, 85, 30, 0, 0]  # 固收占比
@@ -57,8 +57,8 @@ bars3 = ax.bar(x_positions, alternative_ratio, bar_width,
                color='#70AD47', alpha=0.8)
 
 # 定义存量策略和新策略
-existing_strategies = ['固收', '权益', 'SAA']  # 存量策略（绿色）
-new_strategies = ['固收+', 'TAA多资产', '权益-', '权益+']  # 新策略（红色）
+existing_strategies = ['固收配置策略', '权益策略', 'SAA策略']  # 存量策略（绿色）
+new_strategies = ['固收+', '外委多资产策略', '权益-', '权益+']  # 新策略（红色）
 
 # 为策略添加高亮边框
 for i, strategy in enumerate(strategies):
