@@ -107,19 +107,6 @@ ax.text(0.5, -24, '← 低风险', ha='center', fontsize=44,
 ax.text(len(strategies) - 1.5, -24, '高风险 →', ha='center', fontsize=44, 
         color='#666666', style='italic')
 
-# 添加策略说明（分别用红色和绿色显示）
-# 红色部分
-ax.text(0.55, 0.02, '★ 红框标注为新策略', 
-        transform=ax.transAxes, ha='right', va='bottom',
-        fontsize=36, fontweight='bold', color='red',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
-                 edgecolor='red', linewidth=3, alpha=0.9))
-# 绿色部分
-ax.text(0.78, 0.02, '★ 绿框标注为存量策略', 
-        transform=ax.transAxes, ha='right', va='bottom',
-        fontsize=36, fontweight='bold', color='green',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
-                 edgecolor='green', linewidth=3, alpha=0.9))
 
 # 调整布局
 plt.tight_layout()
