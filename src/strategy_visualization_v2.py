@@ -8,7 +8,7 @@ rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
 rcParams['axes.unicode_minus'] = False
 
 # 定义策略数据
-strategies = ['固收', 'SAA', 'TAA多资产', '权益']
+strategies = ['固收配置策略', 'SAA策略', '外委多资产策略', '权益策略']
 
 # 三类资产占比
 fixed_income_ratio = [100, 92, 40, 0]  # 固收占比
@@ -23,7 +23,7 @@ alternative_return = (10.0, 13.0)  # 另类资产：10%-13%（商品、黄金等
 # 定义每个策略的预期收益率区间
 return_ranges = []
 for i in range(len(strategies)):
-    if strategies[i] == 'TAA多资产':  # TAA多资产策略使用固定的5.5%-6.5%
+    if strategies[i] == '外委多资产策略':  # 外委多资产策略使用固定的5.5%-6.5%
         return_ranges.append('5.5-6.5%')
     else:  # 其他策略根据配置比例计算
         min_return = (fixed_income_ratio[i] / 100) * fixed_income_return[0] + \
@@ -56,35 +56,11 @@ bars3 = ax.bar(x_positions, alternative_ratio, bar_width,
                bottom=alternative_bottom, label='另类资产', 
                color='#70AD47', alpha=0.8)
 
-# 定义存量策略和新策略
-existing_strategies = ['固收', '权益', 'SAA']  # 存量策略（绿色）
-new_strategies = ['TAA多资产']  # 新策略（红色）
-
-# 为策略添加高亮边框
-for i, strategy in enumerate(strategies):
-    if strategy in existing_strategies:
-        # 存量策略：绿色边框
-        ax.bar(x_positions[i], 100, bar_width, 
-               edgecolor='green', linewidth=8, fill=False, zorder=10)
-    elif strategy in new_strategies:
-        # 新策略：红色边框
-        ax.bar(x_positions[i], 100, bar_width, 
-               edgecolor='red', linewidth=8, fill=False, zorder=10)
-
 # 在柱子上添加策略名称
 for i, (x, strategy, return_range) in enumerate(zip(x_positions, strategies, return_ranges)):
-    # 添加策略名称，根据类型使用不同颜色
-    if strategy in existing_strategies:
-        # 存量策略：绿色
-        ax.text(x, 108, strategy + ' ★', ha='center', va='bottom', 
-                fontsize=44, fontweight='bold', color='green')
-    elif strategy in new_strategies:
-        # 新策略：红色
-        ax.text(x, 108, strategy + ' ★', ha='center', va='bottom', 
-                fontsize=44, fontweight='bold', color='red')
-    else:
-        ax.text(x, 108, strategy, ha='center', va='bottom', 
-                fontsize=44, fontweight='bold')
+    # 添加策略名称
+    ax.text(x, 108, strategy, ha='center', va='bottom', 
+            fontsize=44, fontweight='bold')
     
     # 添加收益率区间
     ax.text(x, -10, return_range, ha='center', va='top', 
@@ -131,19 +107,6 @@ ax.text(0.5, -24, '← 低风险', ha='center', fontsize=44,
 ax.text(len(strategies) - 1.5, -24, '高风险 →', ha='center', fontsize=44, 
         color='#666666', style='italic')
 
-# 添加策略说明（分别用红色和绿色显示）
-# 红色部分
-ax.text(0.55, 0.02, '★ 红框标注为新策略', 
-        transform=ax.transAxes, ha='right', va='bottom',
-        fontsize=36, fontweight='bold', color='red',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
-                 edgecolor='red', linewidth=3, alpha=0.9))
-# 绿色部分
-ax.text(0.78, 0.02, '★ 绿框标注为存量策略', 
-        transform=ax.transAxes, ha='right', va='bottom',
-        fontsize=36, fontweight='bold', color='green',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
-                 edgecolor='green', linewidth=3, alpha=0.9))
 
 # 调整布局
 plt.tight_layout()
@@ -175,5 +138,5 @@ for i, strategy in enumerate(strategies):
     alt_str = f'{alternative_ratio[i]}%' if alternative_ratio[i] > 0 else '-'
     print(f"{strategy:<10} {fixed_income_ratio[i]:>6}% {equity_ratio[i]:>9}% {alt_str:>9} {return_ranges[i]:>15}")
 print("="*90)
-print("\n注：TAA多资产策略包含60%权益和40%固收，预期收益率为5.5%-6.5%")
+print("\n注：外委多资产策略包含60%权益和40%固收，预期收益率为5.5%-6.5%")
 

@@ -8,7 +8,7 @@ rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'SimSun']
 rcParams['axes.unicode_minus'] = False
 
 # 定义策略数据
-strategies = ['固收', '固收+', 'SAA', 'TAA多资产', '权益-', '权益', '权益+']
+strategies = ['固收配置策略', '固收+', 'SAA策略', '外委多资产策略', '权益-', '权益策略', '权益+']
 
 # 预期收益率（使用中位数）
 expected_returns = [4.0, 4.15, 4.25, 4.45, 6.15, 7.0, 9.0]
@@ -32,17 +32,17 @@ for i, strategy in enumerate(strategies):
     offset_y = 0.15
     
     # 针对特定策略调整标注位置，避免重叠
-    if strategy == '固收':
+    if strategy == '固收配置策略':
         offset_x, offset_y = 0.3, 0.2
     elif strategy == '固收+':
         offset_x, offset_y = 0.3, -0.3
-    elif strategy == 'SAA':
+    elif strategy == 'SAA策略':
         offset_x, offset_y = 0.4, 0.2
-    elif strategy == 'TAA多资产':
+    elif strategy == '外委多资产策略':
         offset_x, offset_y = 0.4, -0.3
     elif strategy == '权益-':
         offset_x, offset_y = 0.5, 0.2
-    elif strategy == '权益':
+    elif strategy == '权益策略':
         offset_x, offset_y = 0.5, -0.3
     elif strategy == '权益+':
         offset_x, offset_y = 0.5, 0.2
